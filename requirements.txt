@@ -1,0 +1,5 @@
+numpy
+scipy
+polars
+requests
+nflreadpy

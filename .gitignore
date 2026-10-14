@@ -1,0 +1,33 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables (contains API keys - DO NOT COMMIT!)
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NFLverse data cache (auto-downloaded)
+*.parquet
+*.csv.gz
+
+# Logs
+*.log
