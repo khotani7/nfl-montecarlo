@@ -13,7 +13,9 @@ import sys
 import os
 
 # Add parent directory to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, parent_dir)
+sys.path.insert(0, os.path.join(parent_dir, 'core'))
 
 # Import from main script
 from nfl_montecarlo import (
@@ -40,12 +42,14 @@ def main():
 
     # Parse multiplier/odds
     multiplier = args.odds if args.odds else None
-    if multiplier and multiplier < 10:  # Assume it's a multiplier
-        pass
-    elif multiplier:  # American odds
-        if multiplier > 0:
+    if multiplier:
+        # If it's between 1.01 and 20, treat as multiplier (decimal odds)
+        if 1.01 <= multiplier <= 20:
+            pass  # Already a multiplier
+        # Otherwise treat as American odds
+        elif multiplier > 0:  # Positive American odds (e.g., +110)
             multiplier = 1 + (multiplier / 100)
-        else:
+        else:  # Negative American odds (e.g., -110)
             multiplier = 1 + (100 / abs(multiplier))
 
     print(f"Testing: {args.line}")
